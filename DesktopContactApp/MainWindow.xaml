@@ -4,12 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopContactApp"
+        xmlns:uc="clr-namespace:DesktopContactApp.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <StackPanel Margin="10">
         <Button Content="New contact"
                 Click="Button_Click"/>
-        <ListView x:Name="contactsListView"
-                  Margin="0,5,0,0"/>
+        <TextBox Margin="0 5 0 5"
+                 x:Name="searchTextBox"
+                 TextChanged="searchTextBox_TextChanged"/>
+        <ListView x:Name="contactsListView"                  
+                  Margin="0 5 0 0"
+                  SelectionChanged="contactsListView_SelectionChanged">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <uc:ContactControl Contact="{Binding}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackPanel>
 </Window>

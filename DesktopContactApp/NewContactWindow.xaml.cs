@@ -21,8 +21,13 @@ namespace DesktopContactApp
     /// </summary>
     public partial class NewContactWindow : Window
     {
-        public NewContactWindow() => InitializeComponent();
-
+        public NewContactWindow()
+        {
+            InitializeComponent();
+            Owner = Application.Current.MainWindow;
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+        }
+            
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             // TODO: Save contact
